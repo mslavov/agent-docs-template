@@ -1,0 +1,24 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+AWAYS start by reading @RULES.md and making sure you follow them.
+
+NEXT READ THE RELEVANT DOCUMENTATION
+
+## Pre-Task Protocol
+
+1. **Always start with** @INDEX.md - Review the document index for relevant
+   documentation
+2. Read @system-overview.md for system understanding
+3. Identify specific documents needed from the Quick Task Lookup table in the index
+4. Consult product documents from docs/product
+5. Consult technical references docs/tech
+
+## Post-Task Protocol
+
+1. Update the single authoritative source for any changed information
+2. Update cross-references if new relationships are created
+3. Mark task completion in @progress.md
+4. Update @INDEX.md if new documents are created
