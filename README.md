@@ -37,6 +37,47 @@ This template transforms how teams work with AI agents by providing:
 
 ## Multi-Agent Workflow
 
+### Development Workflow Diagram
+
+```mermaid
+graph TD
+    A[Product Requirements Document - PRD] --> B[Architect Agent]
+    B --> C{Technical Analysis}
+    
+    C --> D[System Design]
+    C --> E[Architecture Decisions]
+    C --> F[Technology Stack]
+    
+    D --> G[Task Breakdown]
+    E --> G
+    F --> G
+    
+    G --> H[Task Definition & Dependencies]
+    
+    H --> I[Task Assignment Engine]
+    
+    I --> J[Frontend Agent Tasks]
+    I --> K[Backend Agent Tasks]
+    I --> L[Database Agent Tasks]
+    I --> M[API Agent Tasks]
+    I --> N[Testing Agent Tasks]
+    
+    J --> O[Parallel Execution]
+    K --> O
+    L --> O
+    M --> O
+    N --> O
+    
+    O --> P[Integration & Merge]
+    P --> Q[Review & Quality Check]
+    Q --> R[Deployment Ready]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:4px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style O fill:#bfb,stroke:#333,stroke-width:2px
+    style R fill:#fbf,stroke:#333,stroke-width:2px
+```
+
 ### 1. Requirements (PRD)
 
 Create a Product Requirement Document in `docs/prd/`:
@@ -296,3 +337,4 @@ For detailed guides, see:
 - [Agent Roles Reference](docs/guides/agent-roles.md)
 - [Task Management Guide](docs/guides/task-management.md)
 - [Example Workflow](docs/guides/example-workflow.md)
+- [Development Workflow](docs/guides/development-workflow.md)
