@@ -1,218 +1,298 @@
 # Agent Documentation Template
 
-A structured documentation template system designed for AI-assisted software
-development, optimized for use with Claude and other AI agents.
+A comprehensive multi-agent development framework that enables parallel,
+AI-driven software development with specialized agent roles and file-based task
+management.
 
 ## Overview
 
-This template provides a comprehensive documentation framework that helps
-maintain organized, consistent, and AI-friendly project documentation. It
-includes predefined structures, workflows, and guidelines that enable AI agents
-to quickly understand and navigate your project.
+This template transforms how teams work with AI agents by providing:
+
+- **Specialized Agent Roles** - Architect, Planner, Developer, Tester, Docs, PM
+- **Parallel Task Execution** - Multiple agents work simultaneously
+- **File-Based Task Management** - Simple folder structure for task flow
+- **Continuous Documentation** - Docs stay synchronized with code
+- **PRD-Driven Development** - Start from requirements, not implementation
 
 ## Key Features
 
-- **AI-Agent Optimized**: Specifically designed with clear protocols for AI
-  agents like Claude
-- **Structured Workflow**: Pre-Task and Post-Task protocols ensure consistent
-  documentation practices
-- **Template-Based Approach**: Ready-to-use templates for common documentation
-  needs
-- **Task Management**: Built-in progress tracking and task archival system
-- **Cross-Referenced Documentation**: Organized documentation with clear
-  navigation paths
-- **Development Rules**: Centralized location for project-specific guidelines
+- **Multi-Agent Orchestration**: Six specialized agents with distinct
+  responsibilities
+- **Folder-Based Tasks**: Simple `todo/` → `in-progress/` → `done/` workflow
+- **Dependency Management**: Automatic task sequencing and blocking
+- **Documentation-First**: PRDs drive development, docs update automatically
+- **Command Integration**: Slash commands for Claude, @ commands for Cursor
+- **Parallel Workstreams**: Frontend, backend, database, and infra tasks run
+  concurrently
 
 ## Getting Started
 
 1. **Copy this template** to your project repository
-2. **Review CLAUDE.md or AGENTS.md** for AI agent usage guidelines
-3. **Start with docs/RULES.md** to understand project-specific rules
-4. **Ask your AI agent to generate initial documentation** - Use this prompt:
-   ```
-   Please analyze this project and generate initial documentation by:
-   1. Examining the codebase structure and identifying key components
-   2. Filling out docs/INDEX.md with actual project details
-   3. Updating docs/system-overview.md with the real architecture
-   4. Creating initial entries in docs/progress.md for any TODOs found
-   5. Populating docs/tech/api-reference.md and database-reference.md if applicable
-   Replace all [PLACEHOLDER] values with actual project information.
-   ```
-5. **Review and refine** the generated documentation
-6. **Continue customizing** as your project evolves
+2. **Create your first PRD** in `docs/prd/[feature-name].md`
+3. **Run the Architect** to design the solution:
+   `/architect docs/prd/[feature-name].md`
+4. **Generate tasks** with the Planner: `/planner [feature-name]`
+5. **Start development** with multiple agents: `/developer frontend`,
+   `/developer backend`
 
-## Documentation Structure
+## Multi-Agent Workflow
 
-```
-agent-docs-template/
-├── README.md              # This file
-├── AGENTS.md              # AI agent usage guidelines
-├── CLAUDE.md              # Claude-specific guidelines (identical to AGENTS.md)
-├── claude.json            # Claude Desktop MCP configuration
-├── .claude/               # Claude Code configuration
-│   └── claude_project.json # Project context and MCP settings
-├── .cursor/               # Cursor configuration
-│   └── mcp.json          # Cursor MCP server configuration
-└── docs/
-    ├── INDEX.md           # Central navigation hub (customize this first!)
-    ├── RULES.md           # Development rules and guidelines
-    ├── progress.md        # Active task tracking
-    ├── task-archive.md    # Completed tasks archive
-    ├── system-overview.md # System architecture template
-    ├── product/           # Product documentation directory
-    └── tech/              # Technical documentation
-        ├── api-reference.md      # API documentation template
-        └── database-reference.md # Database schema template
+### 1. Requirements (PRD)
+
+Create a Product Requirement Document in `docs/prd/`:
+
+```markdown
+# PRD: User Authentication
+
+Define what to build, user stories, and success criteria...
 ```
 
-## Workflow Guide
+### 2. Architecture Design
 
-### Pre-Task Protocol
+```
+/architect docs/prd/user-authentication.md
+```
 
-When starting any development task:
+Creates technical design in `scratch/user-authentication-architecture.md`
 
-1. **Always start with `docs/RULES.md`** - Review project-specific rules and
-   guidelines
-2. **Check `docs/INDEX.md`** - Navigate to relevant documentation
-3. **Use Quick Task Lookup** - Find specific documents for your task type
-4. **Consult relevant docs** - Read product specs and technical references as
-   needed
+### 3. Task Planning
 
-### Post-Task Protocol
+```
+/planner user-authentication
+```
 
-After completing work:
+Generates task files in `tasks/todo/`:
 
-1. **Update documentation** - Modify the single source of truth for any changes
-2. **Update cross-references** - Ensure all related documents reflect changes
-3. **Mark task completion** - Update status in `docs/progress.md`
-4. **Archive if complete** - Move finished tasks to `docs/task-archive.md`
-5. **Update INDEX.md** - Add any new documents created
+- `frontend-login-form.md`
+- `backend-auth-api.md`
+- `database-user-schema.md`
 
-## Template Customization
+### 4. Parallel Development
 
-### Replacing Placeholders
+Multiple agents claim and implement tasks:
 
-All templates contain placeholders marked with `[PLACEHOLDER_NAME]`. Common ones
-include:
+```
+/developer frontend   # Works on UI tasks
+/developer backend    # Works on API tasks
+/developer database   # Works on schema tasks
+```
 
-- `[PROJECT_NAME]` - Your project's name
-- `[DATE]` - Current date in YYYY-MM-DD format
-- `[FRAMEWORK]` - Primary framework (e.g., Next.js, React, Vue)
-- `[PACKAGE_MANAGER]` - npm, yarn, or pnpm
-- `[DATABASE_SERVICE]` - Supabase, PostgreSQL, etc.
+### 5. Testing & Documentation
 
-### Customizing Templates
+```
+/tester         # Validates completed tasks
+/docs-agent     # Updates documentation
+```
 
-1. **docs/INDEX.md** - This should be your first customization
-   - Update project overview
-   - List actual features and components
-   - Modify directory structure to match your project
+### 6. Progress Tracking
 
-2. **docs/system-overview.md** - Comprehensive architecture documentation
-   - Replace architecture diagram with your system design
-   - Document actual data flows and structures
-   - Update implementation status
+```
+/pm status      # Get progress report
+/pm archive     # Archive old completed tasks
+```
 
-3. **docs/RULES.md** - Add your project-specific rules
-   - Development standards
-   - Code style guidelines
-   - Workflow requirements
+## Agent Commands
+
+### Claude Slash Commands
+
+- `/architect [prd-file]` - Design technical architecture
+- `/planner [feature]` - Create task breakdown
+- `/developer [workstream]` - Implement tasks
+- `/tester` - Test completed work
+- `/docs-agent` - Update documentation
+- `/pm [status|archive]` - Manage progress
+
+### Cursor @ Commands
+
+- `@architect` - Architecture design prompt
+- `@planner` - Task planning prompt
+- `@developer` - Development prompt
+- `@tester` - Testing prompt
+- `@docs-agent` - Documentation prompt
+- `@pm` - Project management prompt
+
+## Project Structure
+
+```
+project-root/
+├── docs/                    # All documentation
+│   ├── prd/                # Product requirements
+│   ├── tech/               # Technical docs
+│   ├── guides/             # How-to guides
+│   ├── INDEX.md            # Navigation hub
+│   ├── RULES.md            # Project rules
+│   └── system-overview.md  # Architecture
+├── tasks/                   # Task management
+│   ├── todo/               # Available tasks
+│   ├── in-progress/        # Active work
+│   ├── done/               # Completed tasks
+│   └── archive/            # Historical tasks
+├── scratch/                 # Temporary notes
+│   └── archive/            # Old brainstorms
+├── architect.md            # Architect agent
+├── planner.md              # Planner agent
+├── developer.md            # Developer agent
+├── tester.md               # Testing agent
+├── docs-agent.md           # Docs agent
+└── pm.md                   # PM agent
+```
+
+## Task Management System
+
+### Task Flow
+
+```
+todo/ → in-progress/ → done/ → archive/
+```
+
+### Task File Format
+
+```yaml
+---
+id: backend-user-auth
+workstream: backend
+dependencies: [database-user-schema]
+assigned_to: null
+created: 2025-01-20
+---
+
+# Task Title
+
+## Subtasks
+- [ ] Implementation steps
+- [ ] Write tests
+- [ ] Update docs
+
+## Acceptance Criteria
+- Clear success conditions
+```
+
+### Workstreams
+
+- **frontend** - UI components and interactions
+- **backend** - APIs and business logic
+- **database** - Schema and migrations
+- **infra** - Deployment and configuration
+
+## Documentation Workflow
+
+### Core Principles
+
+1. **Documentation-First** - Changes must update docs
+2. **Single Source of Truth** - `docs/` is canonical
+3. **Continuous Sync** - Docs Agent maintains accuracy
+4. **Immutable Scratch** - Brainstorms are never edited
+
+### Documentation Structure
+
+- `docs/prd/` - Product requirements
+- `docs/tech/` - Technical documentation
+- `docs/guides/` - How-to guides
+- `docs/CHANGELOG.md` - Version history
+
+## Example: Search Feature
+
+### Day 1: Planning
+
+```bash
+# Create PRD
+echo "# PRD: Product Search..." > docs/prd/product-search.md
+
+# Design architecture
+/architect docs/prd/product-search.md
+
+# Generate tasks
+/planner product-search
+```
+
+### Day 2-3: Development
+
+```bash
+# Parallel execution
+/developer frontend   # Terminal 1
+/developer backend    # Terminal 2
+/developer database   # Terminal 3
+```
+
+### Day 4: Validation
+
+```bash
+# Test and document
+/tester
+/docs-agent
+/pm status
+```
 
 ## Best Practices
 
-### For AI Agents
+### For Humans
 
-- Always start with RULES.md and INDEX.md
-- Follow the Pre-Task and Post-Task protocols
-- Update documentation in real-time as changes are made
-- Use the task tracking system in progress.md
-- Maintain single sources of truth
+1. Write clear PRDs with specific requirements
+2. Review architecture before task generation
+3. Monitor task progress regularly
+4. Keep PRDs updated as requirements change
 
-### For Human Developers
+### For Agents
 
-- Keep templates up-to-date with project changes
-- Archive completed tasks regularly
-- Use consistent naming conventions
-- Document decisions and rationale
-- Cross-reference related documentation
+1. One task at a time
+2. Check dependencies first
+3. Update docs immediately
+4. Test before marking done
 
-## Integration with AI Tools
+## Integration
 
-### Claude Code (MCP)
+### MCP Servers
 
-This template includes MCP (Model Context Protocol) configuration for Claude
-Code. When using Claude Code:
+- **Context7** - Context management
+- **Browser Tools** - Web automation
 
-1. The `.claude/claude_project.json` file provides project context
-2. Claude will automatically follow the documentation protocols
-3. Multiple MCP servers are pre-configured:
-   - **Supabase**: For database operations (requires credentials)
-   - **Context7**: For enhanced context management
-   - **Browser Tools**: For web automation and testing
+### CI/CD Hooks
 
-### Cursor Integration
+- Pre-commit documentation checks
+- Task status validation
+- Automated archival
+- Progress reporting
 
-The template also includes Cursor-specific MCP configuration in
-`.cursor/mcp.json` with the same MCP servers available for Cursor users.
+## Quick Reference
 
-### Other AI Agents
+| Need            | Command                          | Creates                           |
+| --------------- | -------------------------------- | --------------------------------- |
+| Design solution | `/architect docs/prd/feature.md` | `scratch/feature-architecture.md` |
+| Create tasks    | `/planner feature`               | `tasks/todo/*.md`                 |
+| Start coding    | `/developer backend`             | Moves task to `in-progress/`      |
+| Test feature    | `/tester`                        | Validates `done/` tasks           |
+| Update docs     | `/docs-agent`                    | Updates `docs/`                   |
+| Check progress  | `/pm status`                     | Progress report                   |
 
-The AGENTS.md file provides universal guidelines that work with any AI coding
-assistant. The structured approach ensures consistent behavior across different
-AI tools.
+## Migration from Simple Workflow
 
-## Task Management
+If you're currently using the simple `progress.md` workflow:
 
-### Progress Tracking
-
-Use `docs/progress.md` with the following legend:
-
-- ✅ Completed
-- 🔄 In Progress
-- 📋 Planned
-
-### Task Archival
-
-When tasks are fully completed:
-
-1. Move the entire task block from `progress.md`
-2. Add it to `task-archive.md` with completion date
-3. Maintain chronological order in the archive
-
-## Example Usage
-
-### Starting a New Feature
-
-```markdown
-1. AI reads docs/RULES.md
-2. AI checks docs/INDEX.md for existing documentation
-3. AI reviews product requirements in docs/product/
-4. AI implements feature following guidelines
-5. AI updates docs/system-overview.md with new components
-6. AI marks task as ✅ in docs/progress.md
-```
-
-### Debugging an Issue
-
-```markdown
-1. AI consults docs/system-overview.md for architecture
-2. AI checks docs/tech/api-reference.md for endpoints
-3. AI reviews docs/tech/database-reference.md for schema
-4. AI fixes issue following patterns in codebase
-5. AI documents the fix in relevant locations
-```
+1. Create PRDs for active features
+2. Run architect on each PRD
+3. Use planner to generate tasks
+4. Continue with multi-agent workflow
 
 ## Contributing
 
 To improve this template:
 
-1. Maintain clarity for AI agents
-2. Keep documentation DRY (Don't Repeat Yourself)
-3. Ensure templates are generic enough for various projects
-4. Add examples where helpful
-5. Test with AI agents to ensure usability
+1. Test agent interactions
+2. Keep commands simple
+3. Maintain clear separation of concerns
+4. Document new patterns
+5. Share successful workflows
 
 ## License
 
 This template is provided as-is for use in your projects. Customize and adapt as
-needed for your specific requirements.
+needed.
+
+---
+
+For detailed guides, see:
+
+- [Multi-Agent Workflow Guide](docs/guides/multi-agent-workflow.md)
+- [Agent Roles Reference](docs/guides/agent-roles.md)
+- [Task Management Guide](docs/guides/task-management.md)
+- [Example Workflow](docs/guides/example-workflow.md)

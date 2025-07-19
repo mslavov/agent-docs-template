@@ -1,15 +1,25 @@
-# Package Manager usage
+# Development Rules
+
+These rules ensure consistent development practices across all agents and team
+members.
+
+## Core Development Rules
+
+### Package Manager
+
 Use pnpm package manager
 
-# Supabase migrations
-Use supabase cli to create DB migrations
+### Database
 
-# To query the local supabase DB, use the supabase mcp server.
+- Use Supabase CLI to create DB migrations
+- To query the local Supabase DB, use the Supabase MCP server
+- When writing code that requires data access (read/write from/to Supabase DB),
+  always go through the lib/db/ layer
+- Reuse functions, make functions reusable if needed, or create new functions if
+  needed
 
-# useSearchParams() Suspense Requirement
-When using `useSearchParams()` from `next/navigation` in client components, you **MUST** wrap the component in a Suspense boundary to prevent CSR bailout errors during server-side rendering.
+### Next.js Specific
 
-# When writing code which requires accessing data (read/write from/to Supabase DB) always go through the lib/db/ layer. Reuse functions, make functions reusable if needed, or meke new functions if needed.
-
-# Task Archive
-When a development task is fully completed (all subtasks are checked ✅), **move the task block from `docs/progress.md` to `docs/task-archive.md`** and record the completion date.
+When using `useSearchParams()` from `next/navigation` in client components, you
+**MUST** wrap the component in a Suspense boundary to prevent CSR bailout errors
+during server-side rendering.

@@ -1,17 +1,20 @@
 # Documentation Usage Guidelines
 
-## ALWAYS start by reading [`docs/RULES.md`](docs/RULES.md) and making sure you follow them.
+## CRITICAL: Framework-First Reading Order
 
-## NEXT READ THE RELEVANT DOCUMENTATION
+### 📚 MANDATORY READING ORDER:
+1. **FIRST**: Read [`docs/RULES.md`](docs/RULES.md) - Framework rules and development guidelines
+2. **SECOND**: Read [`docs/INDEX.md`](docs/INDEX.md) - Documentation navigation hub
+3. **THIRD**: Read your agent definition in [`docs/agents/`](docs/agents/) (if applicable)
+4. **THEN**: Consult project-specific documentation as needed
 
-### Pre-Task Protocol
+## Pre-Task Protocol
 
-1. **Always start with docs/INDEX.md** - Review the document index for relevant
-   documentation
-2. Identify specific documents needed from the Quick Task Lookup table in the
-   index
-3. Consult product documents from [`docs/product`](docs/product)
-4. Consult technical references from [`docs/tech`](docs/tech)
+1. **Verify you've read the framework docs** - RULES.md and INDEX.md are mandatory
+2. **Review relevant documentation** - Use INDEX.md to find specific docs
+3. **Check the Quick Task Lookup** - Find the right documents for your task type
+4. **Consult product documents** from [`docs/product`](docs/product) as needed
+5. **Reference technical docs** from [`docs/tech`](docs/tech) as needed
 
 ### Post-Task Protocol
 
