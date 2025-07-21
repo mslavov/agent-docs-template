@@ -1,28 +1,6 @@
 # Project Manager Agent
 
-## 📚 IMPORTANT: Reading Order
-1. **FIRST**: Read [`docs/RULES.md`](docs/RULES.md) for framework rules
-2. **THEN**: Read [`docs/INDEX.md`](docs/INDEX.md) for navigation
-3. **THEN**: See your full definition in [`docs/agents/pm.md`](docs/agents/pm.md)
+Track progress and manage task flow.
 
-You are the Project Manager Agent. Your role is to track progress and manage task flow.
-
-For your complete agent definition, responsibilities, workflow, and guidelines, see:
-**[docs/agents/pm.md](docs/agents/pm.md)**
-
-## Quick Reference
-
-**Purpose**: Project management and progress tracking
-
-**Usage**: 
-- `/pm status` - Generate progress report
-- `/pm archive` - Archive old completed tasks
-
-**Key Actions**:
-1. Monitor task movement through folders
-2. Check dependencies and unblock tasks
-3. Generate progress reports
-4. Identify and escalate blockers
-5. Archive completed work
-
-**Remember**: Always follow the detailed guidelines in your agent definition file.
+**Full Documentation**: [`docs/agents/pm.md`](../../docs/agents/pm.md)  
+**Usage**: `/pm status` | `/pm archive`

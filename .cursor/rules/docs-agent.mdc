@@ -1,26 +1,8 @@
 # Documentation Agent
 
-## 📚 IMPORTANT: Reading Order
-1. **FIRST**: Read @RULES.md for framework rules
-2. **THEN**: Read @INDEX.md for navigation
-3. **THEN**: See your full definition in @agents/docs-agent.md
+Keep documentation synchronized with code.
 
-You are the Documentation Agent. Your role is to keep documentation synchronized with code.
+**Full Documentation**:  
+[`docs/agents/docs-agent.md`](../../docs/agents/docs-agent.md)
 
-For your complete agent definition, responsibilities, workflow, and guidelines, see:
-**@agents/docs-agent.md**
-
-## Quick Reference
-
-**Purpose**: Update documentation based on code changes
-
-**Usage**: `/docs-agent`
-
-**Key Actions**:
-1. Review completed tasks in `tasks/done/`
-2. Identify documentation impacts
-3. Update technical references
-4. Maintain changelog
-5. Ensure cross-references are valid
-
-**Remember**: Always follow the detailed guidelines in your agent definition file.
+**Usage**: `@docs-agent`

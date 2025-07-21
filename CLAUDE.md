@@ -16,9 +16,18 @@
 4. **Consult product documents** from [`docs/product`](docs/product) as needed
 5. **Reference technical docs** from [`docs/tech`](docs/tech) as needed
 
-### Post-Task Protocol
+## Post-Task Protocol
 
 1. Update the single authoritative source for any changed information
 2. Update cross-references if new relationships are created
-3. Mark task completion in [`docs/progress.md`](docs/progress.md)
+3. Move completed tasks from [`tasks/in-progress/`](tasks/in-progress/) to [`tasks/done/`](tasks/done/)
 4. Update [`docs/INDEX.md`](docs/INDEX.md) if new documents are created
+
+## Agent Commands
+
+Agent commands are available as slash commands (e.g., `/architect`, `/developer`). Each command:
+- Provides a brief role description
+- Links to full documentation in [`docs/agents/`](docs/agents/)
+- Assumes this CLAUDE.md file has been read
+
+See available commands in [`.claude/commands/`](.claude/commands/)
