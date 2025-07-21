@@ -2,5 +2,5 @@
 
 Validate completed implementations.
 
-**Full Documentation**: [`docs/agents/tester.md`](../../docs/agents/tester.md)  
+**Full Documentation**: [`.agents/definitions/tester.md`](../../.agents/definitions/tester.md)  
 **Usage**: `/tester`

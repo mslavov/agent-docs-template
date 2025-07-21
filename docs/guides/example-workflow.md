@@ -12,7 +12,7 @@ We'll build a product search feature that allows users to:
 
 ## Step 1: Create the PRD
 
-First, create `docs/prd/product-search.md`:
+First, create `docs/product/product-search.md`:
 
 ```markdown
 # PRD: Product Search
@@ -42,7 +42,7 @@ Add search functionality to help users find products quickly...
 
 Run the architect agent:
 ```
-/architect docs/prd/product-search.md
+/architect docs/product/product-search.md
 ```
 
 This creates `scratch/product-search-architecture.md`:

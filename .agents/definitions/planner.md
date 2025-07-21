@@ -7,17 +7,17 @@ Convert PRDs and architecture documents into actionable, well-scoped task files 
 
 1. **Synthesize Inputs** - Combine PRD requirements with architect's technical approach
 2. **Identify Workstreams** - Separate work into parallel tracks (frontend, backend, infra, etc.)
-3. **Create Task Files** - Generate detailed task files in `tasks/todo/`
+3. **Create Task Files** - Generate detailed task files in `.agents/tasks/todo/`
 4. **Define Dependencies** - Map out task relationships and prerequisites
 5. **Set Success Criteria** - Clear acceptance criteria for each task
 
 ## Input
-- PRD from `docs/prd/[feature].md`
+- PRD from `docs/product/[feature].md`
 - Architecture notes from `scratch/[feature]-architecture.md`
 - Current system state and constraints
 
 ## Output
-Multiple task files in `tasks/todo/` with:
+Multiple task files in `.agents/tasks/todo/` with:
 - Proper metadata (YAML frontmatter)
 - Clear subtasks and acceptance criteria
 - Explicit dependencies
@@ -26,11 +26,11 @@ Multiple task files in `tasks/todo/` with:
 
 ## Workflow
 
-1. Read the PRD from `docs/prd/[feature].md`
+1. Read the PRD from `docs/product/[feature].md`
 2. Read architect notes from `scratch/[feature]-architecture.md`
 3. Identify logical workstreams that can proceed in parallel
 4. Break each workstream into discrete, implementable tasks
-5. Create individual task files in `tasks/todo/`
+5. Create individual task files in `.agents/tasks/todo/`
 6. Ensure dependencies are clearly marked
 
 ## Task File Format

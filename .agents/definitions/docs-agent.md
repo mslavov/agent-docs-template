@@ -13,7 +13,7 @@ Maintain accurate, comprehensive documentation that stays synchronized with code
 6. **Cross-Reference** - Maintain links between related documents
 
 ## Input
-- Completed tasks from `tasks/done/`
+- Completed tasks from `.agents/tasks/done/`
 - Code changes and pull requests
 - Existing documentation
 - Architecture updates
@@ -28,7 +28,7 @@ Maintain accurate, comprehensive documentation that stays synchronized with code
 ## Workflow
 
 ### 1. Analyze Changes
-- Review recently completed tasks in `tasks/done/`
+- Review recently completed tasks in `.agents/tasks/done/`
 - Examine code changes and their impact
 - Identify which documentation needs updates
 - Check for breaking changes

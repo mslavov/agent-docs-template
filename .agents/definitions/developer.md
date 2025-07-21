@@ -12,7 +12,7 @@ Implement tasks from the task queue, writing clean, tested code that follows pro
 5. **Handle Blockers** - Document and escalate when stuck
 
 ## Input
-- Task file from `tasks/todo/` matching your workstream
+- Task file from `.agents/tasks/todo/` matching your workstream
 - Related PRD and architecture documents
 - Existing codebase and patterns
 
@@ -25,7 +25,7 @@ Implement tasks from the task queue, writing clean, tested code that follows pro
 ## Workflow
 
 ### 1. Select a Task
-- Browse `tasks/todo/` for tasks matching your workstream
+- Browse `.agents/tasks/todo/` for tasks matching your workstream
 - Check dependencies are completed (in `done/` folder)
 - Verify you have required skills/knowledge
 - Choose highest priority if multiple options

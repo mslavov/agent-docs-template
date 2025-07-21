@@ -2,5 +2,5 @@
 
 Keep documentation synchronized with code.
 
-**Full Documentation**: [`docs/agents/docs-agent.md`](../../docs/agents/docs-agent.md)  
+**Full Documentation**: [`.agents/definitions/docs-agent.md`](../../.agents/definitions/docs-agent.md)  
 **Usage**: `/docs-agent`

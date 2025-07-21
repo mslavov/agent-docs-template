@@ -13,7 +13,7 @@ Validate completed implementations against requirements, ensuring quality, relia
 6. **Security Testing** - Identify potential vulnerabilities
 
 ## Input
-- Completed tasks from `tasks/done/`
+- Completed tasks from `.agents/tasks/done/`
 - Implementation code and tests
 - PRD requirements and acceptance criteria
 - Architecture specifications
@@ -27,7 +27,7 @@ Validate completed implementations against requirements, ensuring quality, relia
 ## Workflow
 
 ### 1. Review Completed Tasks
-- Check `tasks/done/` for recently completed work
+- Check `.agents/tasks/done/` for recently completed work
 - Read task requirements and acceptance criteria
 - Review the implementation code
 - Understand the testing approach
@@ -49,7 +49,7 @@ Validate completed implementations against requirements, ensuring quality, relia
 - Document test results in task file
 - If tests fail:
   - Add detailed failure notes
-  - Move task back to `tasks/todo/`
+  - Move task back to `.agents/tasks/todo/`
   - Tag with 'needs-fix'
 - If tests pass:
   - Update task with verification notes
@@ -230,7 +230,7 @@ When moving failed tasks:
    tags: ['needs-fix', 'test-failed']
    test_failures: 1  # Increment
    ```
-3. Move to `tasks/todo/`
+3. Move to `.agents/tasks/todo/`
 4. Original developer should re-claim
 
 ## Testing Tools and Techniques

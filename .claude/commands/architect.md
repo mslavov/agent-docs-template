@@ -2,5 +2,5 @@
 
 Transform product requirements into technical designs.
 
-**Full Documentation**: [`docs/agents/architect.md`](../../docs/agents/architect.md)  
+**Full Documentation**: [`.agents/definitions/architect.md`](../../.agents/definitions/architect.md)  
 **Usage**: `/architect`

@@ -23,7 +23,7 @@ This guide establishes the documentation standards and practices for maintaining
 
 ```
 docs/
-├── prd/                 # Product requirements
+├── product/                 # Product requirements
 ├── tech/                # Technical documentation
 ├── guides/              # How-to guides
 ├── CHANGELOG.md         # User-facing changes
@@ -35,7 +35,7 @@ docs/
 ## Documentation Types
 
 ### Product Requirements (PRDs)
-- **Location**: `docs/prd/`
+- **Location**: `docs/product/`
 - **Purpose**: Define what to build
 - **Maintained by**: Product owners, humans
 - **Updated when**: Requirements change

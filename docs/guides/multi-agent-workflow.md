@@ -16,7 +16,7 @@ The multi-agent workflow breaks development into specialized roles:
 
 ### 1. Requirements Definition
 
-**Start with a PRD** in `docs/prd/`:
+**Start with a PRD** in `docs/product/`:
 - Write manually or generate with ChatPRD
 - Define what to build, not how
 - Include success criteria
@@ -26,7 +26,7 @@ The multi-agent workflow breaks development into specialized roles:
 
 **Invoke Architect Agent**:
 ```
-/architect docs/prd/feature-name.md
+/architect docs/product/feature-name.md
 ```
 
 The architect will:
@@ -105,7 +105,7 @@ The PM will:
 ## Example: Building User Authentication
 
 ### Step 1: Create PRD
-Create `docs/prd/user-authentication.md`:
+Create `docs/product/user-authentication.md`:
 ```markdown
 # PRD: User Authentication
 
@@ -115,7 +115,7 @@ Add user login/registration with email and password...
 
 ### Step 2: Design Architecture
 ```
-/architect docs/prd/user-authentication.md
+/architect docs/product/user-authentication.md
 ```
 Creates `scratch/user-authentication-architecture.md`
 

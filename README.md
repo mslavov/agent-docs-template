@@ -24,15 +24,18 @@ This template transforms how teams work with AI agents by providing:
 - **Command Integration**: Slash commands for Claude, @ commands for Cursor
 - **Parallel Workstreams**: Frontend, backend, database, and infra tasks run
   concurrently
+- **Token Optimized**: Minimal command files reference full documentation
+- **Organized Structure**: Agent operations in `.agents/`, documentation in `docs/`
 
 ## Getting Started
 
 1. **Copy this template** to your project repository
-2. **Create your first PRD** in `docs/prd/[feature-name].md`
-3. **Run the Architect** to design the solution:
-   `/architect docs/prd/[feature-name].md`
-4. **Generate tasks** with the Planner: `/planner [feature-name]`
-5. **Start development** with multiple agents: `/developer frontend`,
+2. **Read CLAUDE.md or AGENTS.md** depending on whether you're using Claude or Cursor
+3. **Create your first PRD** in `docs/product/[feature-name].md`
+4. **Run the Architect** to design the solution:
+   `/architect docs/product/[feature-name].md`
+5. **Generate tasks** with the Planner: `/planner [feature-name]`
+6. **Start development** with multiple agents: `/developer frontend`,
    `/developer backend`
 
 ## Multi-Agent Workflow
@@ -80,7 +83,7 @@ graph TD
 
 ### 1. Requirements (PRD)
 
-Create a Product Requirement Document in `docs/prd/`:
+Create a Product Requirement Document in `docs/product/`:
 
 ```markdown
 # PRD: User Authentication
@@ -91,7 +94,7 @@ Define what to build, user stories, and success criteria...
 ### 2. Architecture Design
 
 ```
-/architect docs/prd/user-authentication.md
+/architect docs/product/user-authentication.md
 ```
 
 Creates technical design in `scratch/user-authentication-architecture.md`
@@ -102,7 +105,7 @@ Creates technical design in `scratch/user-authentication-architecture.md`
 /planner user-authentication
 ```
 
-Generates task files in `tasks/todo/`:
+Generates task files in `.agents/tasks/todo/`:
 
 - `frontend-login-form.md`
 - `backend-auth-api.md`
@@ -136,12 +139,14 @@ Multiple agents claim and implement tasks:
 
 ### Claude Slash Commands
 
-- `/architect [prd-file]` - Design technical architecture
+- `/architect [product-file]` - Design technical architecture
 - `/planner [feature]` - Create task breakdown
 - `/developer [workstream]` - Implement tasks
 - `/tester` - Test completed work
 - `/docs-agent` - Update documentation
 - `/pm [status|archive]` - Manage progress
+
+Commands are defined in `.claude/commands/` as minimal stubs that reference full documentation.
 
 ### Cursor @ Commands
 
@@ -152,30 +157,38 @@ Multiple agents claim and implement tasks:
 - `@docs-agent` - Documentation prompt
 - `@pm` - Project management prompt
 
+Commands are defined in `.cursor/rules/` as .mdc files that reference full documentation.
+
 ## Project Structure
 
 ```
 project-root/
 ├── docs/                    # All documentation
-│   ├── prd/                # Product requirements
-│   ├── tech/               # Technical docs
-│   ├── guides/             # How-to guides
-│   ├── INDEX.md            # Navigation hub
-│   ├── RULES.md            # Project rules
-│   └── system-overview.md  # Architecture
-├── tasks/                   # Task management
-│   ├── todo/               # Available tasks
-│   ├── in-progress/        # Active work
-│   ├── done/               # Completed tasks
-│   └── archive/            # Historical tasks
+│   ├── product/             # Product requirements
+│   ├── tech/                # Technical docs
+│   ├── guides/              # How-to guides
+│   ├── system-overview.md   # Architecture
+│   └── INDEX.md             # Navigation hub
+├── .agents/                 # Agent operations
+│   ├── definitions/         # Agent definitions
+│   ├── tasks/               # Task management
+│   │   ├── todo/            # Available tasks
+│   │   ├── in-progress/     # Active work
+│   │   ├── done/            # Completed tasks
+│   │   └── archive/         # Historical tasks
+│   ├── rules/               # Development rules
+│   └── templates/           # Document templates
 ├── scratch/                 # Temporary notes
-│   └── archive/            # Old brainstorms
-├── architect.md            # Architect agent
-├── planner.md              # Planner agent
-├── developer.md            # Developer agent
-├── tester.md               # Testing agent
-├── docs-agent.md           # Docs agent
-└── pm.md                   # PM agent
+│   └── archive/             # Old brainstorms
+├── .claude/                 # Claude configuration
+│   ├── commands/            # Minimal agent command stubs
+│   └── settings.json        # Claude settings
+├── .cursor/                 # Cursor configuration
+│   ├── rules/               # Agent rules (.mdc files)
+│   └── mcp.json             # MCP server config
+├── CLAUDE.md                # Claude usage instructions
+├── AGENTS.md                # Cursor usage instructions
+└── CHANGELOG.md             # Version history
 ```
 
 ## Task Management System
@@ -226,10 +239,19 @@ created: 2025-01-20
 
 ### Documentation Structure
 
-- `docs/prd/` - Product requirements
+- `docs/product/` - Product requirements (PRDs)
 - `docs/tech/` - Technical documentation
 - `docs/guides/` - How-to guides
-- `docs/CHANGELOG.md` - Version history
+- `docs/system-overview.md` - Architecture overview
+- `docs/INDEX.md` - Documentation navigation hub
+- `CHANGELOG.md` - Version history (root level)
+
+### Agent Operations Structure
+
+- `.agents/definitions/` - Full agent role definitions
+- `.agents/tasks/` - Task management system
+- `.agents/rules/` - Development rules (package manager, database, etc.)
+- `.agents/templates/` - Document templates
 
 ## Example: Search Feature
 
@@ -237,10 +259,10 @@ created: 2025-01-20
 
 ```bash
 # Create PRD
-echo "# PRD: Product Search..." > docs/prd/product-search.md
+echo "# PRD: Product Search..." > docs/product/product-search.md
 
 # Design architecture
-/architect docs/prd/product-search.md
+/architect docs/product/product-search.md
 
 # Generate tasks
 /planner product-search
@@ -298,8 +320,8 @@ echo "# PRD: Product Search..." > docs/prd/product-search.md
 
 | Need            | Command                          | Creates                           |
 | --------------- | -------------------------------- | --------------------------------- |
-| Design solution | `/architect docs/prd/feature.md` | `scratch/feature-architecture.md` |
-| Create tasks    | `/planner feature`               | `tasks/todo/*.md`                 |
+| Design solution | `/architect docs/product/feature.md` | `scratch/feature-architecture.md` |
+| Create tasks    | `/planner feature`               | `.agents/tasks/todo/*.md`         |
 | Start coding    | `/developer backend`             | Moves task to `in-progress/`      |
 | Test feature    | `/tester`                        | Validates `done/` tasks           |
 | Update docs     | `/docs-agent`                    | Updates `docs/`                   |
@@ -313,6 +335,16 @@ If you're currently using the simple `progress.md` workflow:
 2. Run architect on each PRD
 3. Use planner to generate tasks
 4. Continue with multi-agent workflow
+
+## Recent Optimizations
+
+This template has been optimized for:
+
+1. **Token Efficiency**: Agent command files reduced by ~80%
+2. **Clear Organization**: Agent operations separated from documentation
+3. **Modular Rules**: Individual rule files instead of monolithic RULES.md
+4. **Consistent Structure**: Both Claude and Cursor use the same agent definitions
+5. **Improved Navigation**: Simplified INDEX.md focused on documentation only
 
 ## Contributing
 

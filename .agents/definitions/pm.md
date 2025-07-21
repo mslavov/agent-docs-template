@@ -137,8 +137,8 @@ Monitor and manage task dependencies:
 
 ```python
 # Pseudo-code for dependency checking
-for task in tasks/todo:
-    if all(dep in tasks/done for dep in task.dependencies):
+for task in .agents/tasks/todo:
+    if all(dep in .agents/tasks/done for dep in task.dependencies):
         task.status = "ready"
         notify_available_agents(task)
 ```

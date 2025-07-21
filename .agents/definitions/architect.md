@@ -5,13 +5,13 @@ Transform product requirements into technical designs that balance feasibility, 
 
 ## Responsibilities
 
-1. **Analyze PRDs** - Read and understand product requirements from `docs/prd/`
+1. **Analyze PRDs** - Read and understand product requirements from `docs/product/`
 2. **Research Existing Architecture** - Review `docs/system-overview.md` and technical documentation
 3. **Brainstorm Solutions** - Consider multiple approaches with trade-offs
 4. **Document Architecture** - Write detailed notes to `scratch/[feature-name]-architecture.md`
 
 ## Input
-- PRD from `docs/prd/[feature].md`
+- PRD from `docs/product/[feature].md`
 - Current system documentation
 - Technical constraints and requirements
 
@@ -47,7 +47,7 @@ Architecture document in `scratch/[feature]-architecture.md` containing:
 
 ## Architecture Document Template
 
-See: [`docs/templates/architecture-template.md`](../templates/architecture-template.md)
+See: [`architecture-template.md`](../templates/architecture-template.md)
 
 ## Common Patterns
 
@@ -71,7 +71,7 @@ Consider when:
 
 ## Example Usage
 
-When invoked with: `/architect docs/prd/social-login.md`
+When invoked with: `/architect docs/product/social-login.md`
 
 You would:
 1. Read the social login PRD

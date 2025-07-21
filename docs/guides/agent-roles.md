@@ -19,7 +19,7 @@ This guide details each agent's role in the multi-agent development workflow.
 - Recommend implementation approach
 
 ### Inputs
-- PRD from `docs/prd/`
+- PRD from `docs/product/`
 - Current system documentation
 - Technical constraints
 
@@ -31,7 +31,7 @@ This guide details each agent's role in the multi-agent development workflow.
 
 ### Example
 ```
-/architect docs/prd/payment-integration.md
+/architect docs/product/payment-integration.md
 ```
 
 ## Planner Agent
