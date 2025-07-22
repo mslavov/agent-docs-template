@@ -2,6 +2,43 @@
 
 This guide details each agent's role in the multi-agent development workflow.
 
+## Setup Agent
+
+**Purpose**: Analyze existing codebase and auto-generate comprehensive documentation
+
+### When to Use
+- When copying template to existing project
+- Before starting work on undocumented codebase
+- To establish project baseline documentation
+- To infer project rules and conventions
+
+### Responsibilities
+- Scan repository structure
+- Detect technology stack
+- Generate system documentation
+- Create technical references
+- Infer project rules
+- Set up documentation structure
+
+### Inputs
+- Existing codebase files
+- Configuration files
+- Package manifests
+- Database schemas
+
+### Outputs
+- Complete `docs/` structure
+- System overview documentation
+- API and database references
+- Project-specific rules in `.agents/rules/`
+- Initial task templates
+
+### Example
+```
+/setup          # Full analysis and documentation
+/setup check    # Validate and fill gaps
+```
+
 ## Architect Agent
 
 **Purpose**: Transform product requirements into technical designs
@@ -219,6 +256,7 @@ PM Agent monitors all stages continuously
 
 | Scenario | Agent to Use |
 |----------|--------------|
+| "I have an existing codebase" | Setup Agent to generate docs |
 | "I have a new feature idea" | Start with PRD, then Architect |
 | "I need to break down this feature" | Planner |
 | "I want to implement this task" | Developer |

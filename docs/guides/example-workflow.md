@@ -10,6 +10,23 @@ We'll build a product search feature that allows users to:
 - See paginated results
 - Get search suggestions
 
+## Step 0: (Optional) Setup for Existing Projects
+
+If you're adding this feature to an existing, undocumented project, start with:
+
+```
+/setup
+```
+
+This will:
+- Analyze your codebase structure
+- Generate system documentation
+- Create API and database references
+- Infer project conventions
+- Set up the documentation framework
+
+Review the generated docs in `docs/` before proceeding with the PRD.
+
 ## Step 1: Create the PRD
 
 First, create `docs/product/product-search.md`:

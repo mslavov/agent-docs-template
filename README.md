@@ -29,6 +29,7 @@ This template transforms how teams work with AI agents by providing:
 
 ## Getting Started
 
+### For New Features
 1. **Copy this template** to your project repository
 2. **Read CLAUDE.md or AGENTS.md** depending on whether you're using Claude or Cursor
 3. **Create your first PRD** in `docs/product/[feature-name].md`
@@ -37,6 +38,13 @@ This template transforms how teams work with AI agents by providing:
 5. **Generate tasks** with the Planner: `/planner [feature-name]`
 6. **Start development** with multiple agents: `/developer frontend`,
    `/developer backend`
+
+### For Existing Projects
+1. **Copy this template** to your project repository
+2. **Run the Setup Agent** to analyze and document your codebase:
+   `/setup`
+3. **Review generated documentation** in `docs/`
+4. **Continue with PRD-driven development** for new features
 
 ## Multi-Agent Workflow
 
@@ -139,6 +147,7 @@ Multiple agents claim and implement tasks:
 
 ### Claude Slash Commands
 
+- `/setup` - Analyze codebase and generate documentation
 - `/architect [product-file]` - Design technical architecture
 - `/planner [feature]` - Create task breakdown
 - `/developer [workstream]` - Implement tasks
@@ -320,6 +329,7 @@ echo "# PRD: Product Search..." > docs/product/product-search.md
 
 | Need            | Command                          | Creates                           |
 | --------------- | -------------------------------- | --------------------------------- |
+| Setup project   | `/setup`                         | Complete `docs/` structure        |
 | Design solution | `/architect docs/product/feature.md` | `scratch/feature-architecture.md` |
 | Create tasks    | `/planner feature`               | `.agents/tasks/todo/*.md`         |
 | Start coding    | `/developer backend`             | Moves task to `in-progress/`      |

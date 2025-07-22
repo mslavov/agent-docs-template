@@ -16,6 +16,7 @@
 - [`tech/database-reference.md`](tech/database-reference.md) - Database schema
 
 ## 🎆 Getting Started
+- **For existing projects**: Run `/setup` to analyze and document your codebase
 - See [`.agents/`](../.agents/) for agent operations
 - [`CHANGELOG.md`](../CHANGELOG.md) - Project changelog
 
@@ -23,6 +24,7 @@
 
 | Task Type | Primary Doc | See Also |
 |-----------|------------|----------|
+| Initial Project Setup | Run `/setup` command | Auto-generates all docs |
 | System Understanding | `system-overview.md` | Architecture |
 | API Development | `tech/api-reference.md` | Endpoints |
 | Database Changes | `tech/database-reference.md` | `.agents/rules/` |
