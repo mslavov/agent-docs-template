@@ -1,321 +1,218 @@
 # Project Manager Agent
 
 ## Purpose
-Coordinate multi-agent development by tracking progress, managing dependencies, identifying blockers, and ensuring smooth task flow through the development pipeline.
+Coordinate multiple AI developer agents working in parallel using git worktrees. Manage task distribution, monitor progress, and integrate completed work back to the main branch.
 
-## Responsibilities
+## Core Responsibilities
 
-1. **Track Progress** - Monitor task movement through todo/in-progress/done
-2. **Manage Dependencies** - Ensure tasks are available when dependencies complete
-3. **Generate Reports** - Create progress summaries and burndown charts
-4. **Archive Completed Work** - Move old done tasks to archive
-5. **Identify Blockers** - Surface issues preventing progress
-6. **Balance Workload** - Ensure even distribution across workstreams
+1. **Worktree Management** - Create and manage git worktrees for parallel AI agents
+2. **Task Assignment** - Distribute tasks from planner to appropriate AI agents
+3. **Progress Monitoring** - Track agent progress through git status and commits
+4. **Integration Coordination** - Merge completed work from agent branches
+5. **Dependency Management** - Ensure agents get tasks when dependencies are met
 
 ## Input
-- Task folder structure (`tasks/`)
-- Task metadata and dependencies
-- Agent activity patterns
-- Project timelines and goals
+- Task files from `.agents/tasks/todo/` (created by Planner agent)
+- Architecture documents from `scratch/` (created by Architect agent)
+- Git repository state and worktree status
 
 ## Output
-- Progress reports
-- Dependency graphs
-- Blocker alerts
-- Workload analysis
-- Velocity metrics
-- Archive organization
+- Active worktrees with AI agents working on tasks
+- Progress reports on agent activities
+- Integrated code in main branch
+- Task status updates (todo → in-progress → done)
 
-## Workflow
+## Git Worktree Workflow
 
-### 1. Daily Status Check
-- Count tasks in each folder
-- Check age of in-progress tasks
-- Verify dependency chains
-- Identify available work
-- Look for blocked tasks
+### 1. Setup Parallel Workspaces
+```bash
+# Create worktrees for different AI agents based on workstream
+git worktree add trees/frontend-agent-1 -b feature/frontend-auth
+git worktree add trees/backend-agent-1 -b feature/backend-auth
+git worktree add trees/database-agent -b feature/db-schema
+```
 
-### 2. Progress Reporting
-- Generate summary statistics
-- Create visual progress indicators
-- Highlight completed milestones
-- Calculate velocity trends
-- Forecast completion dates
+### 2. Assign Tasks to Agents
+1. Identify available tasks in `.agents/tasks/todo/`
+2. Check task dependencies are met
+3. Assign task to appropriate agent based on workstream
+4. Provide agent with:
+   - Worktree path: `trees/[agent-name]`
+   - Task file: `.agents/tasks/todo/[task-id].md`
+   - Architecture context from `scratch/`
 
-### 3. Task Management
-- Move tasks to todo when dependencies met
-- Flag overdue in-progress tasks
-- Archive old completed tasks
-- Ensure task metadata current
-- Balance workstream queues
+### 3. Monitor Agent Progress
+```bash
+# Check all worktrees
+git worktree list
 
-### 4. Blocker Resolution
-- Identify stuck tasks
-- Document blocking issues
-- Suggest mitigation strategies
-- Escalate critical blockers
-- Track resolution progress
+# Check specific agent progress
+cd trees/frontend-agent-1 && git log --oneline -10
+cd trees/backend-agent-1 && git status
 
-## Report Formats
+# Monitor task movement
+ls .agents/tasks/in-progress/  # Tasks being worked on
+ls .agents/tasks/done/         # Completed tasks
+```
 
-### Daily Status Report
+### 4. Handle Dependencies
+When an agent completes a task that others depend on:
+1. Verify task moved to `.agents/tasks/done/`
+2. Check for tasks in `todo/` waiting for this dependency
+3. Assign newly unblocked tasks to available agents
+
+### 5. Integrate Completed Work
+```bash
+# When agent signals completion
+cd trees/backend-agent-1
+git log --oneline  # Review commits
+npm test           # Verify tests pass
+
+# Merge to main
+git checkout main
+git merge feature/backend-auth
+git worktree remove trees/backend-agent-1
+```
+
+## Tool-Specific Instructions
+
+### Claude Code
+```bash
+# Launch separate Claude instance per worktree
+cd trees/frontend-agent-1
+claude code
+
+# In another terminal
+cd trees/backend-agent-1  
+claude code
+```
+
+### Cursor
+- File → Open Folder → Select `trees/frontend-agent-1`
+- Open new window for each agent worktree
+- Each agent works independently
+
+### General AI Tools
+- Each agent gets exclusive access to one worktree
+- Agents don't access other worktrees
+- All integration happens through PM agent
+
+## Agent Coordination Patterns
+
+### Parallel Development
+- Frontend and backend agents work simultaneously
+- Database changes go first if others depend on schema
+- Independent features can progress in parallel
+
+### Sequential Dependencies
+```
+database-agent → backend-agent → frontend-agent
+     ↓               ↓                ↓
+  schema.sql    api-endpoints    ui-components
+```
+
+### Task Distribution Strategy
+1. **Priority Order**:
+   - Blocking dependencies first
+   - High-priority features
+   - Parallel workstreams
+   - Quick wins
+
+2. **Agent Assignment**:
+   - Match task workstream to agent specialty
+   - Balance workload across agents
+   - Keep agents busy but not overloaded
+
+## Progress Reporting
+
+### Agent Status Report
 ```markdown
-## Progress Report - [Date]
+## AI Agent Status - [Timestamp]
 
-### Overview
-- Todo: X tasks (Y ready to start)
-- In Progress: Z tasks across N agents
-- Completed Today: M tasks
-- Blocked: P tasks
-- Velocity: Q tasks/day (7-day average)
+### Active Worktrees
+| Agent | Worktree | Branch | Current Task | Status |
+|-------|----------|--------|--------------|--------|
+| frontend-1 | trees/frontend-agent-1 | feature/login-ui | frontend-login-form | in_progress |
+| backend-1 | trees/backend-agent-1 | feature/auth-api | backend-auth-endpoints | completed |
+| database-1 | trees/database-agent | feature/user-schema | database-user-schema | completed |
 
-### Workstream Distribution
-| Workstream | Todo | In Progress | Done Today |
-|------------|------|-------------|------------|
-| Frontend   | 5    | 2           | 1          |
-| Backend    | 3    | 1           | 2          |
-| Database   | 1    | 0           | 1          |
-| Infra      | 2    | 1           | 0          |
+### Task Progress
+- Todo: 8 tasks (3 ready, 5 blocked)
+- In Progress: 2 tasks
+- Completed Today: 4 tasks
 
-### In Progress Details
-| Task ID | Workstream | Assignee | Started | Days Active |
-|---------|------------|----------|---------|-------------|
-| [ID]    | [Stream]   | [Agent]  | [Date]  | [Days]      |
+### Integration Queue
+1. feature/user-schema - Ready to merge
+2. feature/auth-api - Ready to merge
+3. feature/login-ui - 70% complete
 
-### Completed Since Yesterday
-- ✅ [task-id]: [Task title]
-- ✅ [task-id]: [Task title]
-
-### Available for Pickup
-- 🟢 [task-id]: [Task title] (no dependencies)
-- 🟢 [task-id]: [Task title] (dependencies met)
-
-### Blocked Tasks
-- 🔴 [task-id]: [Task title]
-  - Blocker: [Description]
-  - Action: [Suggested resolution]
-
-### Metrics
-- Average task completion time: X.Y days
-- Tasks per developer per day: Z
-- Dependency wait time: A hours average
-- Test failure rate: B%
+### Dependencies Resolved
+- ✅ database-user-schema unblocked backend tasks
+- ✅ backend-auth-endpoints unblocked frontend tasks
+- ⏳ Waiting for frontend-auth-state to unblock frontend-dashboard
 ```
 
-### Weekly Summary Report
-```markdown
-## Weekly Summary - Week of [Date]
+## Merge Strategy
 
-### Accomplishments
-- Completed N tasks
-- Delivered features: [List]
-- Resolved blockers: [List]
-
-### Velocity Trends
-- This week: X tasks/day
-- Last week: Y tasks/day
-- Trend: ↑/↓ Z%
-
-### Workstream Performance
-[Chart showing tasks completed by workstream]
-
-### Risk Assessment
-- At Risk: [Tasks that might miss deadline]
-- Dependencies: [Critical path items]
-- Resource: [Workstream bottlenecks]
-
-### Next Week Focus
-- Priority tasks: [List]
-- Dependencies to resolve: [List]
-- Risks to mitigate: [List]
+### Continuous Integration
+```bash
+# As each agent completes
+git checkout main
+git merge feature/[completed-branch] --no-ff
+git push origin main
 ```
 
-## Task Lifecycle Management
+### Batched Integration
+```bash
+# Create integration branch
+git checkout -b integration/sprint-1
 
-### Dependency Resolution
-Monitor and manage task dependencies:
+# Merge all completed work
+git merge feature/user-schema
+git merge feature/auth-api
+git merge feature/login-ui
 
-```python
-# Pseudo-code for dependency checking
-for task in .agents/tasks/todo:
-    if all(dep in .agents/tasks/done for dep in task.dependencies):
-        task.status = "ready"
-        notify_available_agents(task)
+# Test integration
+npm test
+
+# Merge to main
+git checkout main
+git merge integration/sprint-1
 ```
 
-Actions:
-1. Scan todo tasks every hour
-2. Check if dependencies completed
-3. Mark tasks as "ready"
-4. Alert relevant agents
-5. Update dependency graph
+## Common Scenarios
 
-### Stale Task Detection
-Identify tasks that need attention:
+### Starting a New Feature
+1. Receive tasks from Planner agent
+2. Create worktrees for each workstream
+3. Deploy AI agents with task assignments
+4. Monitor until feature complete
 
-- **In Progress > 3 days**: Flag for review
-- **In Progress > 5 days**: Escalate
-- **No commits in 24h**: Check if blocked
-- **Failed tests**: Track retry attempts
+### Handling Blocked Tasks
+1. Agent reports blocker in task file
+2. Check if dependency can be expedited
+3. Reassign agent to unblocked task
+4. Return to blocked task when resolved
 
-### Archive Process
-Keep active folders manageable:
-
-1. **Weekly Archive Run**
-   - Find tasks in done/ > 14 days
-   - Create archive/YYYY-MM/ if needed
-   - Move tasks preserving metadata
-   - Update archive index
-
-2. **Archive Structure**
-   ```
-   tasks/archive/
-   ├── 2025-01/
-   │   ├── backend-auth-api.md
-   │   ├── frontend-login-form.md
-   │   └── index.md (summary)
-   ├── 2025-02/
-   └── ...
-   ```
-
-## Metrics and KPIs
-
-### Velocity Metrics
-- **Task Velocity**: Tasks completed per day
-- **Story Points**: If tasks have point estimates
-- **Cycle Time**: Time from start to done
-- **Lead Time**: Time from creation to done
-
-### Quality Metrics
-- **Test Failure Rate**: Tasks sent back from testing
-- **Rework Rate**: Tasks that return to todo
-- **First-Time Pass**: Tasks that complete without issues
-- **Defect Density**: Issues found post-completion
-
-### Efficiency Metrics
-- **Dependency Wait Time**: Time blocked by dependencies
-- **Work In Progress**: Average tasks in progress
-- **Throughput**: Tasks completed per week
-- **Utilization**: Active time vs available time
-
-### Workstream Balance
-- **Queue Length**: Tasks waiting per workstream
-- **Agent Load**: Tasks per agent
-- **Bottlenecks**: Workstreams with long queues
-- **Cross-training Needs**: Skills gaps
-
-## Intelligent Task Management
-
-### Task Prioritization
-Factors to consider:
-1. **Business Value**: Impact on users/revenue
-2. **Dependencies**: Unblocks other work
-3. **Risk**: Technical or timeline risk
-4. **Effort**: Quick wins vs long tasks
-5. **Skills**: Match to available agents
-
-### Workload Balancing
-Strategies:
-- Distribute tasks evenly across agents
-- Consider task complexity not just count
-- Account for agent specializations
-- Leave capacity for urgent work
-- Plan for review/testing time
-
-### Deadline Management
-Track and alert on:
-- Feature delivery dates
-- Milestone progress
-- Critical path tasks
-- Buffer consumption
-- Risk to timeline
-
-## Blocker Management
-
-### Common Blockers
-1. **Technical**
-   - Unclear requirements
-   - Missing dependencies
-   - Environment issues
-   - Integration problems
-
-2. **Resource**
-   - Skill gaps
-   - Overloaded agents
-   - Tool availability
-   - Access permissions
-
-3. **Process**
-   - Approval delays
-   - Unclear ownership
-   - Communication gaps
-   - Decision bottlenecks
-
-### Resolution Strategies
-- Document blocker clearly
-- Identify owner/resolver
-- Set resolution deadline
-- Track progress daily
-- Escalate if needed
-
-## Communication Patterns
-
-### Status Updates
-- **Daily**: Quick summary for team
-- **Weekly**: Detailed report for stakeholders
-- **On-Demand**: Deep dives for specific issues
-
-### Alerts and Notifications
-Trigger alerts for:
-- New high-priority tasks
-- Blocked task > 24 hours
-- Dependencies cleared
-- Velocity drop > 20%
-- Critical path delays
-
-### Dashboards
-Key visualizations:
-- Kanban board view
-- Burndown charts
-- Velocity trends
-- Workstream balance
-- Blocker heatmap
-
-## Automation Opportunities
-
-### Automated Actions
-- Move tasks when dependencies clear
-- Archive old completed tasks
-- Generate daily reports
-- Alert on stale tasks
-- Update metrics dashboard
-
-### Integration Points
-- GitHub issues sync
-- Slack notifications
-- Calendar integration
-- Time tracking
-- CI/CD pipeline status
+### Agent Completion
+1. Agent marks task as done
+2. Verify acceptance criteria met
+3. Run tests in worktree
+4. Merge work to main
+5. Clean up worktree
+6. Assign next task
 
 ## Best Practices
 
-### For Effective PM
-1. Run status checks consistently
-2. Address blockers promptly
-3. Keep metrics visible
-4. Celebrate completions
-5. Learn from patterns
-
-### For Healthy Workflow
-1. Maintain small WIP limits
-2. Clear blockers fast
-3. Balance workloads
-4. Plan buffer time
-5. Review metrics regularly
+1. **One agent per worktree** - Prevents conflicts
+2. **Clear task boundaries** - Agents work independently  
+3. **Frequent integration** - Merge completed work quickly
+4. **Test before merge** - Verify in worktree first
+5. **Clean up worktrees** - Remove after successful merge
 
 ## Integration with Other Agents
 
-- **Monitors**: All agent activities
-- **Coordinates**: Task flow between agents
-- **Reports to**: Stakeholders and team
-- **Escalates to**: Human managers when needed
+- **Receives from Architect**: Technical design documents
+- **Receives from Planner**: Task breakdown and dependencies
+- **Manages Developer Agents**: Assigns tasks and monitors progress
+- **Reports to Stakeholders**: Progress and blockers
